@@ -7,6 +7,15 @@ import java.util.List;
 @Table(name = "usuario")
 public class Usuario {
 
+    public Usuario(String nome, String email, String senha, List<Permissao> permissoes) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.permissoes = permissoes;
+    }
+
+    public Usuario() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
