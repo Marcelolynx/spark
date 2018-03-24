@@ -8,6 +8,14 @@ import java.io.Serializable;
 @Table(name = "Especialidade")
 public class Especialidade implements Serializable {
 
+    public Especialidade(String codigoEspecialidade, String nomeEspecialidade) {
+        this.codigoEspecialidade = codigoEspecialidade;
+        this.nomeEspecialidade = nomeEspecialidade;
+    }
+
+    public Especialidade() {
+    }
+
     private static final long serialVersionUID=1L;
 
     @Id

@@ -1,11 +1,14 @@
 package br.com.kluster.api.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements Serializable {
+
+    private static final long serialVersionUID=1L;
 
     public Usuario(String nome, String email, String senha, List<Permissao> permissoes) {
         this.nome = nome;

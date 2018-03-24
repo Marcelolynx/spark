@@ -1,10 +1,13 @@
 package br.com.kluster.api.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "permissao")
-public class Permissao {
+public class Permissao implements Serializable {
+
+    private static final long serialVersionUID=1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
