@@ -28,7 +28,7 @@ public class LancamentoService {
     public Lancamento salvar(Lancamento lancamento) {
 
         Paciente paciente = pacienteRepository.findOne(lancamento.getPaciente().getId());
-        if(paciente == null || paciente.isInativo()) {
+        if (paciente == null || paciente.isInativo()) {
             throw new PessoaInexistenteOuInativaException();
         }
 
@@ -37,14 +37,29 @@ public class LancamentoService {
 
 
     public Lancamento atualizar(Long id, Lancamento lancamento) {
-        Lancamento lancamentoSave = lancamentoRepository.findOne(id);
+        Lancamento lancamentoSave = buscarLancamentoExistente(id);
 
-        if(lancamentoSave == null) {
-            throw new EmptyResultDataAccessException(1);
+        if(!lancamento.getPaciente().equals(lancamentoSave.getPaciente())) {
+            validarPaciente(lancamento);
         }
         BeanUtils.copyProperties(lancamento, lancamentoSave, "id");
         return lancamentoRepository.save(lancamentoSave);
 
+    }
+
+    private void validarPaciente(Lancamento lancamento) {
+        Paciente paciente = null;
+                if(lancamento.getPaciente().getId() !=null) {
+            paciente = pacienteRepository.findOne(lancamento.getPaciente().getId());
+        }
+    }
+
+    private Lancamento buscarLancamentoExistente(Long id) {
+        Lancamento lancamentoSalvo = lancamentoRepository.findOne(id);
+        if(lancamentoSalvo == null) {
+            throw new IllegalArgumentException();
+        }
+        return lancamentoSalvo;
     }
 
 

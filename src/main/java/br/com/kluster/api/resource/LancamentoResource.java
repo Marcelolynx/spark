@@ -82,8 +82,12 @@ public class LancamentoResource {
     //Update Total do Recurso
     @PutMapping("/{id}")
     public ResponseEntity<Lancamento> update(@PathVariable Long id, @Valid @RequestBody Lancamento lancamento) {
-        Lancamento lancamentoSave = lancamentoService.atualizar(id, lancamento);
-        return  ResponseEntity.ok(lancamentoSave);
+        try {
+            Lancamento lancamentoSave = lancamentoService.atualizar(id, lancamento);
+            return ResponseEntity.ok(lancamentoSave);
+        }catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @ExceptionHandler({PessoaInexistenteOuInativaException.class})
