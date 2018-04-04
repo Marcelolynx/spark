@@ -11,12 +11,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.List;
+
 
 
 @RestController
@@ -53,7 +52,7 @@ public class PacienteResource {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PreAuthorize("hasAuthority('ROLE_REMOVER_LANCAMENTO')")
+    //@PreAuthorize("hasAuthority('ROLE_REMOVER_LANCAMENTO')")
     public  void remove(@PathVariable long id) {
         pacienteRepository.delete(id);
     }
