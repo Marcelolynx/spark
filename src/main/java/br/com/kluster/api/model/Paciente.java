@@ -8,7 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Paciente")
@@ -82,6 +84,10 @@ public class Paciente implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
+
+    @ElementCollection
+    @CollectionTable(name = "telefone")
+    private Set<String> telefones = new HashSet<>();
 
     @OneToOne
     @JoinColumn(name = "id_convenio")
@@ -220,7 +226,13 @@ public class Paciente implements Serializable {
         this.ativo = ativo;
     }
 
+    public Set<String> getTelefones() {
+        return telefones;
+    }
 
+    public void setTelefones(Set<String> telefones) {
+        this.telefones = telefones;
+    }
 
     @Override
     public boolean equals(Object o) {
