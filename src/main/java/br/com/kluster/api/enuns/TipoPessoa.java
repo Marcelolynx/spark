@@ -1,6 +1,6 @@
 package br.com.kluster.api.enuns;
 
-public enum TipoFornecedor {
+public enum TipoPessoa {
 
     PESSOA_FISICA("Pessoa Física"),
     PESSOA_JURIDICA("Pessoa Jurídica");
@@ -8,7 +8,7 @@ public enum TipoFornecedor {
 
     private String descricao;
 
-    TipoFornecedor(String descricao) {
+    TipoPessoa(String descricao) {
         this.descricao = descricao;
     }
 

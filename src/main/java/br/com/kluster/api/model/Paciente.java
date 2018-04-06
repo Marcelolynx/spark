@@ -7,10 +7,7 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "Paciente")
@@ -98,6 +95,8 @@ public class Paciente implements Serializable {
 
     @Column(name = "paciente_status")
     private boolean ativo;
+
+    private List<Atendimento> atendimentos = new ArrayList<>();
 
     @Transient
     @JsonIgnore
@@ -232,6 +231,14 @@ public class Paciente implements Serializable {
 
     public void setTelefones(Set<String> telefones) {
         this.telefones = telefones;
+    }
+
+    public List<Atendimento> getAtendimentos() {
+        return atendimentos;
+    }
+
+    public void setAtendimentos(List<Atendimento> atendimentos) {
+        this.atendimentos = atendimentos;
     }
 
     @Override
