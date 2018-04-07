@@ -5,9 +5,11 @@ import br.com.kluster.api.enuns.StatusAtendimento;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "Atendimento")
+@Table(name = "atendimento")
 public class Atendimento implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -26,10 +28,15 @@ public class Atendimento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Set<ItemAtendimento> itens =  new HashSet<>();
+
     private Date instante;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "atendimento")
     private Pagamento pagamento;
 
+    @ManyToOne
+    @JoinColumn(name="paciente_id")
     private Paciente paciente;
 
     private StatusAtendimento statusAtendimento;
@@ -73,6 +80,14 @@ public class Atendimento implements Serializable {
 
     public void setStatusAtendimento(StatusAtendimento statusAtendimento) {
         this.statusAtendimento = statusAtendimento;
+    }
+
+    public Set<ItemAtendimento> getItens() {
+        return itens;
+    }
+
+    public void setItens(Set<ItemAtendimento> itens) {
+        this.itens = itens;
     }
 
     @Override

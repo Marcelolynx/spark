@@ -2,8 +2,11 @@ package br.com.kluster.api.model;
 
 import br.com.kluster.api.enuns.EstadoPagamento;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pagamento implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -17,10 +20,14 @@ public class Pagamento implements Serializable {
         this.atendimento = atendimento;
     }
 
+    @Id
     private Long id;
 
     private EstadoPagamento estadoPagamento;
 
+    @OneToOne
+    @JoinColumn(name = "atendimento_id")
+    @MapsId
     private Atendimento atendimento;
 
 

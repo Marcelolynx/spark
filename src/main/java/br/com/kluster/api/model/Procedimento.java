@@ -2,6 +2,10 @@ package br.com.kluster.api.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Procedimento")
@@ -28,6 +32,8 @@ public class Procedimento implements Serializable {
     @Column(name = "procedimento_descricao")
     private String procedimentoDescricao;
 
+    private Set<ItemAtendimento> itens =  new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -50,6 +56,24 @@ public class Procedimento implements Serializable {
 
     public void setProcedimentoDescricao(String procedimentoDescricao) {
         this.procedimentoDescricao = procedimentoDescricao;
+    }
+
+    public Set<ItemAtendimento> getItens() {
+        return itens;
+    }
+
+    public void setItens(Set<ItemAtendimento> itens) {
+        this.itens = itens;
+    }
+
+
+    public List<Atendimento> getAtendimento() {
+        List<Atendimento> lista = new ArrayList<>();
+        for (ItemAtendimento x : itens) {
+            lista.add(x.getAtendimento());
+        }
+
+        return lista;
     }
 
     @Override

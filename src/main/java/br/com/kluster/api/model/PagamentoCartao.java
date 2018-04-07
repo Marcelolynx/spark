@@ -2,6 +2,9 @@ package br.com.kluster.api.model;
 
 import br.com.kluster.api.enuns.EstadoPagamento;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PagamentoCartao extends Pagamento {
 
     private static final long serialVersionUID=1L;

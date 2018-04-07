@@ -20,7 +20,10 @@ public class Paciente implements Serializable {
     }
 
     public Paciente(String nome, String origem, String indicado, Sexo sexo, Date dataNascimento, Date dataCadastro,
-                    String profissao, String empresaTrabalho, String email, String observacao, Endereco endereco, Convenio convenio, String numeroConvenio, boolean ativo) {
+                    String profissao, String empresaTrabalho, String email,
+                    String observacao, Endereco endereco, Convenio convenio, String numeroConvenio,
+                    boolean ativo,
+                    boolean vip) {
         this.nome = nome;
         this.origem = origem;
         this.indicado = indicado;
@@ -35,6 +38,7 @@ public class Paciente implements Serializable {
         this.convenio = convenio;
         this.numeroConvenio = numeroConvenio;
         this.ativo = ativo;
+        this.vip = vip;
 
     }
 
@@ -96,6 +100,10 @@ public class Paciente implements Serializable {
     @Column(name = "paciente_status")
     private boolean ativo;
 
+    @Column(name = "paciente_vip")
+    private boolean vip;
+
+    @OneToMany(mappedBy = "paciente")
     private List<Atendimento> atendimentos = new ArrayList<>();
 
     @Transient
@@ -239,6 +247,14 @@ public class Paciente implements Serializable {
 
     public void setAtendimentos(List<Atendimento> atendimentos) {
         this.atendimentos = atendimentos;
+    }
+
+    public boolean isVip() {
+        return vip;
+    }
+
+    public void setVip(boolean vip) {
+        this.vip = vip;
     }
 
     @Override
