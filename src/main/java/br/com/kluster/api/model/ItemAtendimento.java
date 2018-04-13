@@ -1,7 +1,10 @@
 package br.com.kluster.api.model;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import java.io.Serializable;
 
+@Entity
 public class ItemAtendimento implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -17,6 +20,7 @@ public class ItemAtendimento implements Serializable {
         this.valor = valor;
     }
 
+    @EmbeddedId
     private ItemAtendimentoPK id = new ItemAtendimentoPK();
 
     private double desconto;

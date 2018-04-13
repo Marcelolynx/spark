@@ -28,6 +28,7 @@ public class Atendimento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(mappedBy = "id.atendimento")
     private Set<ItemAtendimento> itens =  new HashSet<>();
 
     private Date instante;

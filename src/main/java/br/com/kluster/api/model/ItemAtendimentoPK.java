@@ -13,6 +13,7 @@ public class ItemAtendimentoPK implements Serializable {
     @ManyToOne
     @JoinColumn(name = "atendimento_id")
     private Atendimento atendimento;
+
     @ManyToOne
     @JoinColumn(name = "procedimento_id")
     private Procedimento procedimento;

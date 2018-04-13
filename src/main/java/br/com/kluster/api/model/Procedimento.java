@@ -32,6 +32,7 @@ public class Procedimento implements Serializable {
     @Column(name = "procedimento_descricao")
     private String procedimentoDescricao;
 
+    @OneToMany(mappedBy = "id.procedimento")
     private Set<ItemAtendimento> itens =  new HashSet<>();
 
     public Long getId() {
@@ -57,6 +58,7 @@ public class Procedimento implements Serializable {
     public void setProcedimentoDescricao(String procedimentoDescricao) {
         this.procedimentoDescricao = procedimentoDescricao;
     }
+
 
     public Set<ItemAtendimento> getItens() {
         return itens;
