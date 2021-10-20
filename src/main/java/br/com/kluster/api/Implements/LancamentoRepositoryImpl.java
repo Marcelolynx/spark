@@ -27,7 +27,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
     @PersistenceContext
     private EntityManager manager;
 
-    @Override
+    /*@Override
     public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, Pageable pageable) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<ResumoLancamento> criteria = builder.createQuery(ResumoLancamento.class);
@@ -53,7 +53,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
         adicionarRestricoesDePaginacao(query, pageable);
 
         return new PageImpl<>(query.getResultList(), pageable, total(lancamentoFilter));
-    }
+    }*/
 
     @Override
     public Page<Lancamento> filtrar(LancamentoFilter lancamentoFilter, Pageable pageable) {
